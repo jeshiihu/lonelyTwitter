@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,9 +40,40 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+				Date currentDate = new Date(System.currentTimeMillis());
 
+				NormalTweet newTweet = new NormalTweet(text, currentDate);
+
+				try
+				{
+					newTweet.SetMessage("test");
+				}
+				catch (TweetTooLongException e)
+				{
+					e.printStackTrace();
+				}
+
+
+				ImportantTweet newImportantTweet = new ImportantTweet(text);
+				String sImportantTweet = newImportantTweet.GetMessage();
+
+				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+				tweetList.add(newTweet);
+				tweetList.add(newImportantTweet);
+
+				// Lab exercise!
+				HappyMood newHappyMood = new HappyMood();
+				SadMood   newSadMood = new SadMood();
+
+				ArrayList<Mood> rgMoods = new ArrayList<Mood>();
+				rgMoods.add(newHappyMood);
+				rgMoods.add(newSadMood);
+
+				newTweet.SetMoods(rgMoods);
+				newTweet.GetMoods();
+
+				saveInFile(text, currentDate);
+				finish();
 			}
 		});
 	}
