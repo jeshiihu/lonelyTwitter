@@ -71,6 +71,7 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		loadFromFile();
 		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
 	}
@@ -87,8 +88,7 @@ public class LonelyTwitterActivity extends Activity {
 			tweetList = gson.fromJson(in, listType);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			tweetList = new ArrayList<Tweet>();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException();
@@ -105,8 +105,7 @@ public class LonelyTwitterActivity extends Activity {
 
 			writer.flush();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			tweetList = new ArrayList<Tweet>();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException();
