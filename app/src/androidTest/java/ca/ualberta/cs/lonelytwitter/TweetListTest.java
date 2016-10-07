@@ -8,13 +8,20 @@ import java.util.Date;
 /**
  * Created by Jess on 2016-09-29.
  */
-
 public class TweetListTest extends ActivityInstrumentationTestCase2 {
 
+    /**
+     * Instantiates a new Tweet list test.
+     */
     public TweetListTest() {
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
     }
 
+    /**
+     * Test add tweet.
+     *
+     * @throws Exception the exception
+     */
     public void testAddTweet() throws Exception{
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("adding tweet");
@@ -23,6 +30,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(tweets.hasTweet(tweet));
     }
 
+    /**
+     * Test add tweet illegal duplicate.
+     *
+     * @throws Exception the exception
+     */
     public void testAddTweetIllegalDuplicate() throws Exception{
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("adding tweet duplicate");
@@ -38,6 +50,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(caught);
     }
 
+    /**
+     * Test delete tweet.
+     *
+     * @throws Exception the exception
+     */
     public void testDeleteTweet() throws Exception{
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("remove me");
@@ -47,6 +64,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertFalse(tweets.hasTweet(tweet));
     }
 
+    /**
+     * Test get tweet.
+     *
+     * @throws Exception the exception
+     */
     public void testGetTweet() throws Exception{
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("Get me");
@@ -56,6 +78,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertEquals(returnedTweet.getMessage(), tweet.getMessage());
     }
 
+    /**
+     * Test get tweet chronilogical sort.
+     *
+     * @throws Exception the exception
+     */
     public void testGetTweetChronilogicalSort() throws Exception{
         TweetList tweets = new TweetList();
 
@@ -82,6 +109,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertEquals(tweets.getTweet(2).getMessage(), tweetNew.getMessage());
     }
 
+    /**
+     * Test has tweet.
+     *
+     * @throws Exception the exception
+     */
     public void testHasTweet() throws Exception{
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("test");
@@ -90,6 +122,11 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(list.hasTweet(tweet));
     }
 
+    /**
+     * Test count.
+     *
+     * @throws Exception the exception
+     */
     public void testCount() throws Exception {
         TweetList tweets = new TweetList();
         Tweet tweet0 = new NormalTweet("test");

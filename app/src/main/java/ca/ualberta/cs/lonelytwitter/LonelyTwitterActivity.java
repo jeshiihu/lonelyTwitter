@@ -1,3 +1,10 @@
+/*
+Copyright (C) 2016 Team 20, CMPUT301, University of Alberta - All Rights Reserved.
+You may use, copy, or distribute this code under terms and conditions of University of Alberta
+and Code of Student Behavior.
+Please contact abc@abc.ca for more details or questions
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -12,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,15 +29,44 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * this class is the main view class in lonelytwitter class.
+ * It deals with user inputs, saves/loads them in/from the file FILE_NAME (file.sav)
+ * <p> You can access this file from Android Device Monitor</p>
+ * <pre> pre-formatted </pre>
+ * <code>
+ * pseudo code that is used in this class is as follows:
+ * step 1 <br>
+ * step 2 <br>
+ * </code>
+ *
+ * @author Jess
+ * @version 1.0
+ * @see NormalTweet
+ * @see java.io.BufferedInputStream
+ */
 public class LonelyTwitterActivity extends Activity {
 
+	/**
+	 * This is the name of the file that is saved in your virtual device.
+	 * You can access it through Android Device Monitor by selecting your app
+	 * then data  data  file.sav
+	 * @see NormalTweet
+	 * @author Jesssss
+	 */
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
+/*
+Testing multi-line documentations
+Testing
+ */
 
-	/** Called when the activity is first created. */
+	/**
+	 *  Called when the activity is first created.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,6 +102,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Called on start of activity
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -76,6 +114,9 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * This loads the json file and generates the tweets from its contents.
+	 */
 	private void loadFromFile() {
 		ArrayList<String> tweets = new ArrayList<String>();
 		try {
@@ -94,7 +135,10 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+	/**
+	 * Save data to file
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME, 0); // 0 is overriding rather than appending
@@ -110,5 +154,16 @@ public class LonelyTwitterActivity extends Activity {
 			// TODO Auto-generated catch block
 			throw new RuntimeException();
 		}
+	}
+
+	/**
+	 * This method does nothing..
+	 *
+	 * @param s this is a string
+	 * @param i this is an int
+	 */
+	public void testParamJavaDocParam(String s, int i)
+	{
+
 	}
 }
