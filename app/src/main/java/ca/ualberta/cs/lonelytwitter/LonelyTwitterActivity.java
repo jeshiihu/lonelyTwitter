@@ -14,13 +14,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,15 +58,22 @@ public class LonelyTwitterActivity extends Activity {
 	 * @see NormalTweet
 	 * @author Jesssss
 	 */
+	private Activity activity = this;
+
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
+
 /*
 Testing multi-line documentations
 Testing
  */
+
+	public ListView getOldTweetsList(){
+		return oldTweetsList;
+	}
 
 	/**
 	 *  Called when the activity is first created.
@@ -98,6 +109,14 @@ Testing
 				tweetList.clear();
 				adapter.notifyDataSetChanged();
 				saveInFile();
+			}
+		});
+
+		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(activity, EditTweetActivity.class);
+				intent.putExtra("tweet", (Tweet)oldTweetsList.getItemAtPosition(position));
+				startActivity(intent);
 			}
 		});
 	}
